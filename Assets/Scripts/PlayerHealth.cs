@@ -32,11 +32,11 @@ public class PlayerHealth : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            TakeDamage(20);
+            TakeDamage(60);
         }
     }
 
-    //Set les pv max a 100 et ajoute les Pv au joueur
+    // Set les pv max a 100 et ajoute les Pv au joueur
     public void HealPlayer (int amount)
     {
         if ((currentHealth + amount) > maxHealth)
@@ -56,13 +56,32 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
+
+            // vérifier si le joueur st toujours vivant
+            if(currentHealth <= 0)
+            {
+                Die();
+                return;
+            }
+
+
             isInvicible = true;
             StartCoroutine(InvicibilityFalsh());
             StartCoroutine(HandleInvicibilityDelay());
         }
 
     }
-
+    public void Die()
+    {
+        Debug.Log("le joueur est éliminé");
+        // Bloquer les mouvement du personnage
+        PlayerMovement.instance.enabled = false;
+        // jouer l'animation d'élimination
+        PlayerMovement.instance.animator.SetTrigger("Death");
+        // empêcher les interaction physique avec les autres éléments de la scène
+        PlayerMovement.instance.rb.bodyType = RigidbodyType2D.Kinematic;
+        PlayerMovement.instance.playerCollider.enabled = false;
+    }
     public IEnumerator InvicibilityFalsh()
     {
         while (isInvicible)

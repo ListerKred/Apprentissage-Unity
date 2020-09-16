@@ -12216,6 +12216,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6626365256485037510, guid: d7157b8946bde364d9429483b59c1a1c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6626365256485037511, guid: d7157b8946bde364d9429483b59c1a1c,
         type: 3}
       propertyPath: climbSpeed
