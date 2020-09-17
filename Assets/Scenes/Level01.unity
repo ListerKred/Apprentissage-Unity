@@ -2452,6 +2452,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6626365257046566415}
   m_PrefabAsset: {fileID: 0}
+--- !u!70 &579322822 stripped
+CapsuleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6626365256485037513, guid: d7157b8946bde364d9429483b59c1a1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6626365257046566415}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &641617016
 GameObject:
   m_ObjectHideFlags: 0
@@ -12226,6 +12232,11 @@ PrefabInstance:
       propertyPath: climbSpeed
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 6626365256485037511, guid: d7157b8946bde364d9429483b59c1a1c,
+        type: 3}
+      propertyPath: playerCollider
+      value: 
+      objectReference: {fileID: 579322822}
     - target: {fileID: 6626365256485037514, guid: d7157b8946bde364d9429483b59c1a1c,
         type: 3}
       propertyPath: m_Name
@@ -12299,6 +12310,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793364495983375617, guid: 5d82e0136e47fbe45a838756b1565a99,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d82e0136e47fbe45a838756b1565a99, type: 3}
