@@ -79,6 +79,8 @@ public class PlayerHealth : MonoBehaviour
         PlayerMovement.instance.animator.SetTrigger("Death");
         // empêcher les interaction physique avec les autres éléments de la scène
         PlayerMovement.instance.rb.bodyType = RigidbodyType2D.Kinematic;
+        // empêcher le deplacement de la caméra lors du GameOver
+        PlayerMovement.instance.rb.velocity = Vector3.zero;
         PlayerMovement.instance.playerCollider.enabled = false;
         // Appel du menu
         GameOverManager.instance.OnPlayerDeath();
