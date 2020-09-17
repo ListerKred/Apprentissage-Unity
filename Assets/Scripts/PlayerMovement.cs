@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     public static PlayerMovement instance;
 
+    // Singleton de PlayerMovement
     private void Awake()
     {
         if (instance != null)
@@ -37,7 +38,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.fixedDeltaTime;
+
+        verticalMovement = Input.GetAxis("Vertical") * climbSpeed * Time.fixedDeltaTime;
+        if (Input.GetButtonDown("Jump") && isGrounded && !isClimbing)
         {
             isJumping = true;
         }
@@ -51,9 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-
-        verticalMovement = Input.GetAxis("Vertical") * climbSpeed * Time.deltaTime;
+        
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayer);
 
