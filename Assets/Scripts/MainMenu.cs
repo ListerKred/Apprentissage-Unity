@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
-using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
     public string levelToLaod;
+
+    public GameObject settingsWindow;
 
    public void StartGame()
     {
@@ -12,7 +13,12 @@ public class MainMenu : MonoBehaviour
     }
     public void SettingsButton()
     {
+        settingsWindow.SetActive(true);
+    }
 
+    public void CloseSettingsWindow()
+    {
+        settingsWindow.SetActive(false);
     }
     public void QuitGame()
     {
