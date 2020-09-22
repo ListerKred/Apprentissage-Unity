@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -6,7 +7,19 @@ public class AudioManager : MonoBehaviour
     public AudioSource audioSource;
     private int musicIndex = 0;
 
-    // Start is called before the first frame update
+    public AudioMixerGroup soundEffectMixer;
+
+    public static AudioManager instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("Il y a plus d'une instance de AudioManager dans la scène");
+            return;
+        }
+        instance = this;
+    }
     void Start()
     {
         // Envoyer la 1er musique de la liste
@@ -15,7 +28,6 @@ public class AudioManager : MonoBehaviour
         audioSource.Play();
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Permet de savoir si une musique est joué
@@ -33,5 +45,20 @@ public class AudioManager : MonoBehaviour
         audioSource.clip = playlist[musicIndex];
         // Jouer la musique
         audioSource.Play();
+    }
+
+    public AudioSource PlayClipAt(AudioClip clip, Vector3 pos)
+    {
+        // Création d'une empty TempAudio
+        GameObject tempGo = new GameObject("TempAudio");
+        // Changer ca possition
+        tempGo.transform.position = pos;
+        // Stocker l'audio source
+        AudioSource audioSource = tempGo.AddComponent<AudioSource>();
+        audioSource.clip = clip;
+        audioSource.outputAudioMixerGroup = soundEffectMixer;
+        audioSource.Play();
+        Destroy(tempGo, clip.length);
+        return audioSource;
     }
 }

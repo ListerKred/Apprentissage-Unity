@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -10,9 +11,12 @@ public class PlayerHealth : MonoBehaviour
     public float invicibilityFlashDelay = 0.2f;
     public bool isInvicible = false;
 
+    public AudioClip hitSound;
     public SpriteRenderer graphics;
     public HealthBar healthBar;
     public static PlayerHealth instance;
+
+    
 
     private void Awake()
     {
@@ -54,6 +58,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!isInvicible)
         {
+            AudioManager.instance.PlayClipAt(hitSound, transform.position);
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
 
