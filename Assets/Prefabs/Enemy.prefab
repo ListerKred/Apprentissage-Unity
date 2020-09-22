@@ -136,7 +136,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -4365678376696325385, guid: 3a771e12998fab849975d01794e8b94e,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToDestroy: {fileID: 6793364495825100272}
+  killSound: {fileID: 8300000, guid: 94c7c0c65570d3146ab57eea94140971, type: 3}
 --- !u!1 &6793364497330627170
 GameObject:
   m_ObjectHideFlags: 0

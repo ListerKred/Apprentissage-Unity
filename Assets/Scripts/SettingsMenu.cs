@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -12,8 +11,18 @@ public class SettingsMenu : MonoBehaviour
     public Dropdown resolutionDropdown;
 
     Resolution[] resolutions;
+
+    public Slider musicSlider;
+    public Slider soundSlider;
     public void Start()
     {
+        // Récuperer la valeur pour l'affichage des slider
+        audioMixer.GetFloat("Music", out float musicValueForSlider);
+        musicSlider.value = musicValueForSlider;
+
+        audioMixer.GetFloat("Sound", out float soundValueForSlider);
+        musicSlider.value = soundValueForSlider;
+
         resolutions = Screen.resolutions.Select(Resolution => new Resolution { width = Resolution.width, height = Resolution.height }).Distinct().ToArray();
         resolutionDropdown.ClearOptions();
 
@@ -39,9 +48,14 @@ public class SettingsMenu : MonoBehaviour
     }
     public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("volume", volume);
+        audioMixer.SetFloat("Music", volume);
     }
-    
+
+    public void SetSoundVolume(float volume)
+    {
+        audioMixer.SetFloat("Sound", volume);
+    }
+
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
